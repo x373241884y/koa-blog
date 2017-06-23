@@ -1,0 +1,18 @@
+<div>
+    操作成功！<span id="timecalc"></span>秒后<a href="javascript:location.replace(document.referrer);">返回上一页</a>！
+</div>
+<script type="text/javascript">
+    (function () {
+        var start = 5, el;
+        el = document.getElementById("timecalc");
+        el.innerText = start;
+        var interlval = setInterval(function () {
+            start = start - 1;
+            el.innerText = start;
+            if (start == 0) {
+                clearInterval(interlval);
+                location.replace(document.referrer);
+            }
+        }, 1000);
+    })();
+</script>

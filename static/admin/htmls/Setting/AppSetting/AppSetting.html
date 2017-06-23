@@ -1,0 +1,61 @@
+<div oc-lazy-load="htmls/Setting/AppSetting/AppSetting.js">
+	<div  ng-controller="AppSettingCtrl" ng-init="startup()">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="h4">选项设置</span>
+			</div>
+			<div class="panel-body">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-4">
+							<div><h4>添加新选项</h4></div>
+							<form name="optionform" novalidate>
+								<div class="form-group">
+									<label>选项名称</label>
+									<input type="text" class="form-control" name="option_name" ng-model="option_name" required>
+								</div>
+								<div class="form-group">
+									<label>选项值域</label>
+
+									<input type="text" class="form-control" name="option_value" ng-model="option_value" required>
+								</div>
+								<button type="button" class="btn btn-info" ng-disabled="optionform.$invalid"
+								        ng-click="postOption()">submit
+								</button>
+							</form>
+							<div class="text-center text-error"></div>
+						</div>
+						<div class="col-md-8" ng-show="pageModel.List&&pageModel.List.length>0">
+							<table class="table table-bordered">
+								<thead>
+								<th>选项ID</th>
+								<th>选项名称</th>
+								<th>选项值域</th>
+								<th>自动载入</th>
+								<th>操作</th>
+								</thead>
+								<tbody>
+								<tr ng-repeat="row in pageModel.List">
+									<td><span ng-bind="row.option_id"></span></td>
+									<td><span ng-bind="row.option_name"></span></td>
+									<td><span ng-bind="row.option_value"></span></td>
+									<td><span ng-bind="row.autoload"></span></td>
+									<td>
+										<a href="" ng-click="editOptionPre(row)"><i class="fa fa-edit text-info"></i></a>&nbsp;&nbsp;
+										<a href="" ng-click="deleteOption(row)"><i class="fa fa-remove text-info"></i></a>
+									</td>
+								</tr>
+
+								</tbody>
+							</table>
+							<div class="pull-right">
+								<div ui-pager="pageModel" callback="doQuery"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

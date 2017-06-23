@@ -1,0 +1,39 @@
+<div oc-lazy-load="htmls/User/UserList/UserList.js">
+	<div ng-controller="UserListCtrl" ng-init="startup()">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="h4">用户列表</span>
+			</div>
+			<div class="panel-body">
+				<div class="user-list">
+					<table class="table table-bordered">
+						<thead>
+						<th>用户名</th>
+						<th>电子邮件</th>
+						<th>角色</th>
+						<th>用户状态</th>
+						<th>操作</th>
+						</thead>
+						<tbody>
+						<tr ng-repeat="row in pageModel.List">
+							<td><span ng-bind="row.user_login"></span></td>
+							<td><span ng-bind="row.user_email"></span></td>
+							<td><span ng-bind="row.display_name"></span></td>
+							<td><span ng-bind="row.user_status"></span></td>
+							<td>
+								<a href="" ng-click="editUser(row)"><i class="fa fa-edit text-info"></i></a>&nbsp;&nbsp;
+								<a href="" ng-click="deleteUser(row)"><i class="fa fa-remove text-info"></i></a>
+							</td>
+
+						</tr>
+						</tbody>
+					</table>
+					<div class="pull-right">
+						<div ui-pager="pageModel" callback="doQuery"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,98 @@
+<%
+var home = request.home;
+var pageModel = home.pageModel || [];
+var articleList = pageModel.recordList,
+        title, pageUrl,
+        type = home.listType,
+        current = pageModel.currentPage,
+        count = pageModel.pageCount,
+        pagebegin=pageModel.beginPageIndex,
+        pageend=pageModel.endPageIndex,
+        limit = pageModel.limit;
+if (type == "index") {
+    home.title = "最近文章:";
+} else if (type == "archive") {
+    home.title = "月份：" + home.year + "年" + home.month + "月";
+} else if (type == "category") {
+    home.title = "分类：" + home.category;
+} else if (type == "search") {
+    home.title = "搜索结果:";
+    pageUrl = "/search?word=" + home.word + "&limit=" + limit;
+}
+if (pageUrl === undefined) {
+    pageUrl = "?limit=" + limit;
+}
+function calcUrl(url, toIndex) {
+    return url + "&start=" + (toIndex - 1) * limit;
+}
+%>
+<h1 class="page-title"><%= home.title %></h1>
+<div id="content" class="site-content">
+    <% if(articleList.length > 0){ %>
+        <% articleList.forEach(function(temp){ %>
+            <%
+                var date = utils.dateFormat(temp.post_date, "yyyy/MM/dd");
+                var url = utils.dateFormat(temp.post_date, "yyyy/MM/dd") + "/post" + temp.ID;
+            %>
+            <article class="post type-post status-publish format-aside hentry ">
+                <header class="entry-header">
+                    <h3 class="entry-title" itemprop="name">
+                        <a itemprop="url" href="<%= "/" + url %>" title="链向<%= temp.post_title %>的固定链接"
+                           rel="bookmark"><%= temp.post_title %></a>
+                    </h3>
+
+                    <div class="entry-meta">
+                                <span class="entry-date">
+                                    <a href="<%= "/" + url %>" rel="bookmark">
+                                        <time class="entry-date published"><%= date %>
+                                        </time>
+                                    </a>
+                                </span>
+                                <span class="comments-link">
+                                    <a href="<%= "/" + url %>"
+                                       itemprop="discussionUrl"><%= temp.comment_count %>评论</a>
+                                </span>
+                    </div>
+                </header>
+            </article>
+
+    <% }); %>
+    <div class="text-center">
+        <%if(count>1){%>
+        <div class="navigation pagination " role="navigation">
+            <ul class="pagination">
+                <%if(current===1){%>
+                    <li class="disabled"><a href="javascript:void(0);"  aria-label="Previous">Previous</a></li>
+                <%}else{%>
+                    <li><a href="<%=calcUrl(pageUrl,current-1)%>" aria-label="Prev">Previous</a></li>
+                <%}%>
+                <!--center-->
+                <% for(var i=pagebegin; i<=pageend; i++) {%>
+                    <%if(current===i){%>
+                        <li class="active"><a href="javascript:void(0);"><%= i %></a></li>
+                    <%}else{%>
+                        <li><a href="<%=calcUrl(pageUrl,i)%>"><%= i %></a></li>
+                    <%}%>
+                <% } %>
+                <!--right-->
+                <%if(current===count){%>
+                    <li class="disabled">
+                        <a href="javascript:void(0);" aria-label="Next">Next</a>
+                    </li>
+                <%}else{%>
+                    <li><a href="<%=calcUrl(pageUrl,current+1)%>" aria-label="Next">Next</a></li>
+                <%}%>
+            </ul>
+        </div>
+        <%}%>
+    </div>
+    <% } else{ %>
+    <article
+            class="post type-post status-publish format-aside hentry category-uncategorized post_format-post-format-aside">
+        <div class="entry-content" itemprop="articleBody">
+            <p>主人很懒,还没有发布文章!</p>
+        </div>
+    </article>
+    <% } %>
+
+</div>

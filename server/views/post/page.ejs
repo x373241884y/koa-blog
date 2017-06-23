@@ -1,0 +1,43 @@
+<%
+var post = request.previewPost;
+var prev = request.prevPost;
+var next = request.nextPost;
+var url = utils.dateFormat(post.post_date, "yyyy/MM/");
+var date = utils.dateFormat(post.post_date, "yyyy年MM月dd HH:mm:ss");
+var lastModify = post.post_modified;
+if("0000-00-00 00:00:00"==lastModify){
+    lastModify = post.post_date;
+}
+lastModify = utils.dateFormat(lastModify, "yyyy年MM月dd HH:mm:ss")
+%>
+%>
+<h1 class="page-title">页面:<%= post.name %></h1>
+<div id="content" class="site-content" role="main">
+    <div class="post-item">
+        <div class="entry-header">
+            <h3 class="entry-title" itemprop="name"><%= post.post_title %></h3>
+
+            <div class="entry-meta">
+                <span class="entry-date">
+                    <a href="<%= "/" + url %>" rel="bookmark">
+                        <time class="entry-date published"><%= date %></time>
+                    </a>
+                </span>
+            </div>
+        </div>
+
+        <div class="entry-content" itemprop="articleBody">
+            <div class="markdown-body">
+                <%- utils.marked(post.post_content) %>
+            </div>
+        </div>
+        <div class="entry-footer">
+            <div class="entry-meta text-right hidden-xs">
+                <span class="entry-date">
+                    上一次编辑:
+                    <time class="entry-date published"><%= lastModify %></time>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+<%
+var post = request.previewPost;
+var prev = request.prevPost;
+var next = request.nextPost;
+var categoryList = post.categoryList;
+var tagList = post.tagList;
+var commentList=request.commentList;
+var url = utils.dateFormat(post.post_date, "yyyy/MM/");
+var date = utils.dateFormat(post.post_date, "yyyy年MM月dd HH:mm:ss");
+var lastModify = post.post_modified;
+if("0000-00-00 00:00:00"==lastModify){
+    lastModify = post.post_date;
+}
+lastModify = utils.dateFormat(lastModify, "yyyy年MM月dd HH:mm:ss")
+%>
+<h1 class="page-title">文章分类:
+    <%categoryList.forEach(function(temp,index){%>
+        &nbsp;&nbsp;<a href="/category/<%= temp.slug %>"><%=temp.name%></a>
+    <%})%>
+</h1>
+<div id="content" class="site-content" role="main">
+    <div class="post-item">
+        <div class="entry-header">
+            <h3 class="entry-title" itemprop="name"><%= post.post_title %></h3>
+
+            <div class="entry-meta">
+                <span class="entry-date">
+                    <a href="<%= "/" + url %>" rel="bookmark">
+                        <time class="entry-date published"><%= date %></time>
+                    </a>
+                </span>
+                <% if(post.post_type == "post"){ %>
+                <span class="sep">·</span>
+                <span class="comments-link">
+                    <a href="http://localhost:8889/wordpress/?p=21#respond"
+                       itemprop="discussionUrl"></a>
+                    <span><%= post.comment_count %>评论</span>
+                </span>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="entry-content" itemprop="articleBody">
+            <div class="markdown-body">
+                <%- utils.marked(post.post_content) %>
+            </div>
+        </div>
+        <div class="entry-footer">
+            <%if(tagList.length>0){%>
+            <div class="post_taginfo">
+                <span class="label label-default">标签:</span>
+                <%tagList.forEach(function(temp,index){%>
+                <span class="label label-info"><a href="/tag/<%= temp.slug %>"><%=temp.name%></a></span>
+                <%})%>
+            </div>
+            <%}%>
+            <div class="entry-meta text-right hidden-xs">
+                <span class="entry-date">
+                    上一次编辑:
+                    <time class="entry-date published"><%= lastModify %></time>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <% if(post.post_type == "post"){ %>
+    <div id="nav-links">
+        <% if(prev){ %>
+        <div class="nav-previous">
+            <a href="<%= utils.dateFormat(prev.post_date, "/yyyy/MM/dd/post") + prev.ID %>" rel="prev">
+                <span class="meta-nav">上篇文章</span>
+                <span class="post-title"><%= prev.post_title %></span>
+            </a>
+        </div>
+        <% } %>
+        <% if(next){ %>
+        <div class="nav-next">
+            <a href="<%= utils.dateFormat(next.post_date, "/yyyy/MM/dd/post") + next.ID %>" rel="next">
+                <span class="meta-nav">下篇文章</span>
+                <span class="post-title"><%= next.post_title %></span>
+            </a>
+        </div>
+        <% } %>
+    </div>
+
+    <div id="comments" class="comments-area">
+        <div class="row-fluid">
+            <% commentList.forEach(function(temp,index){%>
+            <div class="timeline-comment-wrapper">
+                <div class="timeline-comment" id="comment_<%=temp.comment_ID%>">
+                    <div class="timeline-comment-header">
+                        <div class="comment-header-lt">
+                            <span><%=temp.comment_author%>&nbsp;&nbsp;&nbsp;&nbsp;<%=utils.dateFormat(temp.comment_date,'yyyy-MM-dd HH:mm:ss')%></span>
+                        </div>
+                        <div class="comment-header-rt">
+                            <span><a href="javascript:void(0);" onclick="scrollToId('comment_<%=temp.comment_ID%>')"><%=index+1%>楼</a></span>
+                        </div>
+                    </div>
+                    <div class="timeline-comment-body">
+                        <div class="comment-by">
+                            <p><%- utils.marked(temp.comment_content) %></p>
+                        </div>
+                        <div class="comment-ft">
+                            <span class="label label-info">顶(15)</span>
+                            <span class="label label-info">踩(25)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%})%>
+        </div>
+        <div id="respond" class="comment-respond">
+            <h3 id="reply-title" class="comment-reply-title">发表评论
+                <small>
+                    <a rel="nofollow" id="cancel-comment-reply-link" href="/wordpress/?p=21#respond"
+                       style="display:none;">取消回复
+                    </a>
+                </small>
+            </h3>
+            <form  name="post-new"  class="" action="/comment/postComment.do" method="post">
+                <div class="form-group" style="display: none">
+                    <label for="post">post</label>
+                    <input id="post" class="form-control" name="post_id" type="text" value="<%= post.ID %>">
+                </div>
+                <div class="form-group" style="display: none">
+                    <label for="clientUrl">url</label>
+                    <input id="clientUrl" class="form-control" name="clientUrl" type="text" value="<%=request.url%>">
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6" style="padding-left: 0px">
+                        <label for="author">姓名 <span class="text-danger">*</span></label>
+                        <input id="author" class="form-control" name="author" type="text" required>
+                    </div>
+                    <div class="col-md-6" style="padding-left: 0px">
+                        <label for="email">电子邮件 <span class="text-danger">*</span></label>
+                        <input id="email" class="form-control" name="email" type="email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="url">站点</label>
+                    <div style="margin-right: 15px">
+                        <input id="url" class="form-control" name="url" type="url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="content">评论</label>
+                    <textarea style="padding: 6px 12px;" name="content"  data-provide="markdown" rows="10" required></textarea>
+                </div>
+
+
+                <div class="btn-div text-right">
+                    <button type="submit" id="submit" class="btn btn-sm btn-info" value="">发表评论</button>
+                </div>
+            </form>
+        </div><!-- #respond -->
+    </div>
+    <% } %>
+</div>

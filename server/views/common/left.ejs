@@ -1,0 +1,92 @@
+<div class="star"></div>
+<div class="left">
+    <header id="masthead" class="site-header" role="banner">
+        <div class="hgroup">
+            <h1 class="site-title display-title">
+                <a href="/" title="x373241884y" rel="home"><span itemprop="name"><%=request.autoloadOption.site_name||'站点名称'%></span></a>
+            </h1>
+
+            <h2 itemprop="description" class="site-description"><%=request.autoloadOption.site_desc||'又一个Nodejs站点'%></h2>
+        </div>
+        <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+            <div class="nav-menu">
+                <ul>
+                    <li class="page_item">
+                        <a href="/">首页</a>
+                    </li>
+                    <% request.pageNewestList.forEach(function(post){ %>
+                    <li class="page_item ">
+                        <%
+                            var url = utils.dateFormat(post.post_date, "/yyyy/MM/dd/page") + post.ID;
+                        %>
+                        <a href="<%= url %>"><%= utils.cutMaxTitle(post.post_title, 14) %></a>
+                    </li>
+                    <% }); %>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="sidebar-offcanvas">
+        <div id="main-sidebar" class="widget-area" role="complementary">
+            <aside id="search-2" class="widget widget_search">
+                <form class="form-horizontal" method="get" id="searchform" action="/search">
+                    <input type="text" class="field form-control" name="word" id="word" placeholder="搜索">
+                    <button type="submit" tabindex="-1"><i class="glyphicon glyphicon-search" style="color:black;padding: 8px;"></i></button>
+                </form>
+            </aside>
+            <aside id="recent-posts-2" class="widget widget_recent_entries">
+                <h3 class="widget-title">近期文章</h3>
+                <ul>
+
+                    <% request.postNewestList.forEach(function(post){ %>
+                    <li>
+                        <%
+                            var url = utils.dateFormat(post.post_date, "/yyyy/MM/dd/post") + post.ID;
+                        %>
+                        <a href="<%= url %>"><%= utils.cutMaxTitle(post.post_title, 14) %></a> <span>&nbsp;(<%=post.comment_count%>评论)</span>
+                    </li>
+                    <% }); %>
+                </ul>
+            </aside>
+            <aside id="archives-2" class="widget widget_archive">
+                <h3 class="widget-title">文章归档</h3>
+                <ul>
+                    <% request.articleArchList.forEach(function(arch){ %>
+                    <%
+                        var month = arch.month;
+                        if ((month + "").length == 1) {
+                            month = "0" + month;
+                        }
+                    %>
+                    <li>
+                        <a href="/<%= arch.year %>/<%= month %>"><%= arch.year %>
+                            年<%= month %>月&nbsp;&nbsp;(<%=arch.archive_count%>)</a>
+                    </li>
+                    <% }); %>
+                </ul>
+            </aside>
+            <aside id="categories-2" class="widget widget_categories">
+                <h3 class="widget-title">分类目录</h3>
+                <ul>
+                    <% request.categoryList.forEach(function(temp){ %>
+                        <li class="cat-item cat-item-13"><a href="/category/<%= temp.slug %>"><%= temp.name %></a></li>
+                    <% }); %>
+
+                </ul>
+            </aside>
+            <aside id="meta-2" class="widget widget_meta">
+                <h3 class="widget-title">功能</h3>
+                <ul>
+                    <li><a href="/admin/index.html">登录</a></li>
+                    <li><a href="">文章<abbr title="Really Simple Syndication">RSS</abbr></a>
+                    </li>
+                    <li><a href="#">评论<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	NProgress.start();
+</script>

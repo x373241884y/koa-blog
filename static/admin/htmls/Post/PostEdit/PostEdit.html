@@ -1,0 +1,60 @@
+<div oc-lazy-load="htmls/Post/PostEdit/PostEdit.js">
+	<div ng-controller="PostEditCtrl" ng-init="startup()">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="h4">修改文章</span>
+			</div>
+			<div class="panel-body">
+				<form name="posteditForm" novalidate>
+					<div class="form-group pull-in clearfix">
+						<div class="col-sm-6">
+							<label for="post_title">标题*</label>
+							<input type="text" class="form-control" id="post_title" name="post_title" ng-model="post_title" required placeholder="标题">
+						</div>
+						<div class="col-sm-6">
+							<label for="post_title">发布*</label>
+							<label class="radio">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  ng-model="post_status" value="publish"><span>是 </span>
+								&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  ng-model="post_status" value="draft"><span>否 </span>
+							</label>
+						</div>
+					</div>
+					<div class="form-group  pull-in clearfix">
+						<div class="col-sm-6">
+							<label>分类目录</label>
+							<ui-select multiple v-model="multipleCategory.selectedCategoryWithGroupBy" theme="bootstrap">
+								<ui-select-match placeholder="选择分类">{{$item.name}}</ui-select-match>
+								<ui-select-choices repeat="$category.term_taxonomy_id as $category in allCategory">
+									<div v-bind="$category.slug"></div>
+								</ui-select-choices>
+							</ui-select>
+						</div>
+						<div class="col-sm-6">
+							<label>标签列表</label>
+							<ui-select multiple v-model="multipleTag.selectedTagWithGroupBy" theme="bootstrap">
+								<ui-select-match placeholder="添加标签">{{$item.name}}</ui-select-match>
+								<ui-select-choices  repeat="$tag.term_taxonomy_id as $tag in allTag">
+									<div v-bind="$tag.slug"></div>
+								</ui-select-choices>
+							</ui-select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="post_content">内容*</label>
+
+						<div id="editormd">
+							<textarea id="post_content" class="form-control" name="post_content"></textarea>
+						</div>
+
+					</div>
+					<div class="text-center">
+						<button class="btn btn-info" type="button" ng-click="postEdit()"
+						        ng-disabled="posteditForm.$invalid">submit
+						</button>
+					</div>
+					<div class="text-center"></div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

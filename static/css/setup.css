@@ -1,0 +1,49 @@
+.login-box {
+    width: 400px;
+    margin: 200px auto;
+    padding: 20px;
+    background: rgb(245, 245, 245);
+}
+
+.login-box .icons {
+    text-align: right;
+}
+
+.login-box h2 {
+    color: #646464;
+    text-align: center;
+    padding-bottom: 20px;
+    font-family: monaco;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 16px;
+}
+
+.login-box .box {
+    line-height: 36px;
+}
+
+.login-box .error {
+    text-align: center;
+    line-height: 20px;
+    height: 20px;
+    color: red;
+}
+
+.login-box .box .box-label, .login-box .box .box-ctrl {
+    float: left;
+}
+
+.login-box .box .box-label {
+    width: 30%;
+    line-height: 36px;
+}
+
+.login-box .box .box-ctrl {
+    width: 70%;
+}
+
+.login-box .box:after {
+    clear: both;
+}
+

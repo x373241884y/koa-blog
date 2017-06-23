@@ -1,0 +1,38 @@
+<div oc-lazy-load="htmls/Page/PageList/PageList.js">
+	<div  ng-controller="PageListCtrl" ng-init="startup()">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="h4">所有页面</span>
+			</div>
+			<div class="panel-body">
+				<table class="table table-bordered  table-hover table-responsive">
+					<thead>
+					<tr>
+						<th>标题</th>
+						<th>作者</th>
+						<th>日期</th>
+						<th>状态</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="post in pageModel.List">
+						<td><span ng-bind="post.post_title"></span></td>
+						<td><span ng-bind="post.user_login"></span></td>
+						<td><span ng-bind="post.post_date|date:'yyyy-MM-dd'"></span></td>
+						<td><span ng-bind="post.post_status"></span></td>
+						<td>
+							<a href="" ng-click="editPage(post)"><i class="fa fa-edit text-info"></i></a>&nbsp;&nbsp;
+							<a href=""  ng-click="deletePage(post)"><i class="fa fa-remove text-info"></i></a>
+						</td>
+
+					</tr>
+					</tbody>
+				</table>
+				<div class="pull-right">
+					<div ui-pager="pageModel" callback="doQuery"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

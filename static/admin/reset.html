@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理员密码找回</title>
+	<link rel='stylesheet' href='//cdn.bootcss.com/bootstrap/2.3.2/css/bootstrap.min.css'/>
+	<link type="text/css" rel="stylesheet" href="css/font-awesome.min.css"/>
+	<style type="text/css">
+		.login-box {
+			width: 400px;
+			margin: 200px auto;
+			padding: 20px;
+			background: rgb(245, 245, 245);
+		}
+		.login-box .icons {
+			text-align: right;
+		}
+		.login-box h2 {
+			color: #646464;
+			text-align: center;
+			padding-bottom: 20px;
+			font-family: monaco;
+			font-weight: normal;
+			font-size: 22px;
+			line-height: 16px;
+		}
+
+		.login-box .box {
+			line-height: 36px;
+		}
+		.login-box .error {
+			text-align: center;
+			line-height: 20px;
+			height: 20px;
+			color: red;
+		}
+		.login-box .box .box-label, .login-box .box .box-ctrl {
+			float: left;
+		}
+
+		.login-box .box .box-label {
+			width: 30%;
+			line-height: 36px;
+		}
+
+		.login-box .box .box-ctrl {
+			width: 70%;
+		}
+		.login-box .box:after {
+			clear: both;
+		}
+	</style>
+
+</head>
+<body style="background: url(images/bg-login.jpg) !important;">
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="login-box">
+			<div class="icons">
+				<a href="/"><i class="icon-home"></i></a>
+				<a href="#"><i class="icon-cog"></i></a>
+			</div>
+			<h2>管理员密码找回</h2>
+
+			<form class="form-horizontal" name="register">
+				<div class="box">
+					<div class="box-label text-right" for="username">用户：</div>
+					<div class="box-ctrl">
+						<input type="text" id="user_login" name="user_login" placeholder="username" required>
+					</div>
+				</div>
+				<div class="box">
+					<div class="box-label text-right" for="reset_key">重置key：</div>
+
+					<div class="box-ctrl">
+						<input type="password" id="reset_key" name="reset_key" placeholder="初始化重置key" required>
+					</div>
+				</div>
+				<div class="box">
+					<div class="box-label text-right" for="user_pass">密码：</div>
+
+					<div class="box-ctrl">
+						<input type="password" id="user_pass" name="user_pass" placeholder="password" required>
+					</div>
+				</div>
+				<div class="box">
+					<div class="box-label text-right" for="user_pass2">确认密码：</div>
+
+					<div class="box-ctrl">
+						<input type="password" id="user_pass2" name="user_pass2" placeholder="password2" required>
+					</div>
+				</div>
+				<div class="box">
+					<div class="box-ctrl">
+							<span class="pull-right">
+								<button class="btn btn-primary" style="background-color: #2D89EF" type="button"
+								        onclick="doSubmit()">提交
+								</button>
+							</span>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="error">
+					<span id="error"></span>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="lib/min/jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+	function doSubmit() {
+		var username = $("#user_login").val();
+		var password = $("#user_pass").val();
+		var user_pass2 = $("#user_pass2").val();
+		var reset_key = $("#reset_key").val();
+		if (password === user_pass2) {
+			$.post("/user/resetpwd.do", {
+				user_login: username,
+				user_pass: password,
+				reset_key: reset_key,
+			}, function (data) {
+				if (data.success=="ok") {
+					window.location.href = "index.html";
+				} else {
+					$("#error").text(data.errorMessage);
+				}
+			});
+		}else{
+			$("#error").text("密码不一致!");
+		}
+
+	}
+
+</script>
+</body>
+</html>

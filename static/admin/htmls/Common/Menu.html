@@ -1,0 +1,347 @@
+<!--<div id="adminmenuback"></div>-->
+<!--<div id="adminmenuwrap">-->
+	<!--<ul class="menu-nav" id="menu-list" ui-slide-toggle>-->
+		<!--<li class="active">-->
+			<!--<a class="level1 " ng-click="goto('/')">-->
+				<!--<div class="menu-arrow"></div>-->
+				<!--<div class="menu-image"><i class=" icon-dashboard icon-large "></i></div>-->
+				<!--<div class="menu-name">仪表盘</div>-->
+			<!--</a>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<a class="level1 ">-->
+				<!--<div class="menu-arrow"></div>-->
+				<!--<div class="menu-image"><i class="fa fa-edit"></i></div>-->
+				<!--<div class="menu-name">文章</div>-->
+			<!--</a>-->
+			<!--<ul class="menu-nav2 ">-->
+				<!--<li><a class="level2" ng-click="goto('/PostList')">所有文章</a></li>-->
+				<!--<li><a class="level2" ng-click="goto('/PostAdd/')">写文章</a></li>-->
+				<!--<li><a class="level2" ng-click="goto('/PostCategory')">分类目录</a></li>-->
+				<!--<li><a class="level2" ng-click="goto('/PostTag')">标签</a></li>-->
+			<!--</ul>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<a class="level1 ">-->
+				<!--<div class="menu-arrow"></div>-->
+				<!--<div class="menu-image"><i class=" icon-file icon-large"></i></div>-->
+				<!--<div class="menu-name">页面</div>-->
+			<!--</a>-->
+			<!--<ul class="menu-nav2 ">-->
+				<!--<li><a class="level2" ng-click="goto('/PageList')">所有页面</a></li>-->
+				<!--<li><a class="level2" ng-click="goto('/PageAdd')">新建页面</a></li>-->
+			<!--</ul>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<a class="level1 ">-->
+				<!--<div class="menu-arrow"></div>-->
+				<!--<div class="menu-image"><i class="icon-comment icon-large"></i></div>-->
+				<!--<div class="menu-name">评论</div>-->
+			<!--</a>-->
+			<!--<ul class="menu-nav2 ">-->
+				<!--<li><a class="level2" ng-click="goto('/CommentList')">所有评论</a></li>-->
+			<!--</ul>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<a class="level1 ">-->
+				<!--<div class="menu-arrow"></div>-->
+				<!--<div class="menu-image"><i class="icon-user icon-large"></i></div>-->
+				<!--<div class="menu-name">用户</div>-->
+			<!--</a>-->
+			<!--<ul class="menu-nav2 ">-->
+				<!--<li><a class="level2" ng-click="goto('/UserList')">所有用户</a></li>-->
+				<!--<li><a class="level2" ng-click="goto('/UserAdd')">添加用户</a></li>-->
+				<!--<li><a class="level2" ng-click="goto('/UserInfo')">我的个人资料</a></li>-->
+			<!--</ul>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<a class="level1 ">-->
+				<!--<div class="menu-arrow"></div>-->
+				<!--<div class="menu-image"><i class="icon-asterisk icon-large"></i></div>-->
+				<!--<div class="menu-name">设置</div>-->
+			<!--</a>-->
+			<!--<ul class="menu-nav2 ">-->
+				<!--<li><a class="level2" ng-click="goto('/PersonSetting')">个性设置</a></li>-->
+				<!--<li><a class="level2">撰写</a></li>-->
+				<!--<li><a class="level2">阅读</a></li>-->
+			<!--</ul>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<a class="level1 menu-ctrl">-->
+				<!--<div class="menu-arrow"></div>-->
+				<!--<div class="menu-image"><i class="icon-circle-arrow-left icon-large"></i></div>-->
+				<!--<div class="menu-name">收起</div>-->
+			<!--</a>-->
+		<!--</li>-->
+	<!--</ul>-->
+<!--</div>-->
+
+<!-- list -->
+<ul class="nav">
+	<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+		<span translate="aside.nav.HEADER">Navigation</span>
+	</li>
+	<li>
+		<a href class="auto"> <span class="pull-right text-muted"> <i class="fa fa-fw fa-angle-right text"></i> <i class="fa fa-fw fa-angle-down text-active"></i> </span> <i class="glyphicon glyphicon-home icon text-primary-dker"></i> <span class="font-bold" translate="aside.nav.dashboard.DASHBOARD">Dashboard</span> </a>
+		<ul class="nav nav-sub dk">
+			<li class="nav-sub-header">
+				<a href> <span translate="aside.nav.dashboard.DASHBOARD">Dashboard</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ClassicalDesk"> <span translate="aside.nav.dashboard.Dashboard_v1">Dashboard v1</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.SliverlightDesk"> <b class="label bg-info pull-right">New</b> <span translate="aside.nav.dashboard.Dashboard_v2">Dashboard v2</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.CustomerDesk"><span translate="aside.nav.dashboard.Dashboard_v3">Dashboard v2</span> </a>
+			</li>
+
+		</ul>
+	</li>
+	<li>
+		<a href class="auto"> <span class="pull-right text-muted"> <i class="fa fa-fw fa-angle-right text"></i> <i class="fa fa-fw fa-angle-down text-active"></i> </span> <i class="glyphicon glyphicon-th icon text-success"></i> <span class="font-bold" translate="aside.nav.layout.Layout">Layout</span> </a>
+		<ul class="nav nav-sub dk">
+			<li class="nav-sub-header">
+				<a href> <span translate="aside.nav.layout.Layout">Layout</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="layout.app"> <span translate="aside.nav.layout.Application">Application</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="layout.fullwidth"> <span translate="aside.nav.layout.FullWidth">Full width</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="layout.mobile"> <span translate="aside.nav.layout.Mobile">Mobile</span> </a>
+			</li>
+		</ul>
+	</li>
+
+	<li class="line dk"></li>
+	<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+		<span translate="aside.nav.scaffold.Scaffold">Scaffold</span>
+	</li>
+	<li>
+		<a ui-sref="app.StartStep"> <i class="fa fa-road text-warning" ></i> <b class="badge bg-info pull-right">5</b><span translate="aside.nav.scaffold.Started">Getting Started</span> </a>
+	</li>
+	<li class="line dk"></li>
+	<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+		<span translate="aside.nav.components.COMPONENTS">Components</span>
+	</li>
+
+	<li v-class="{active:$state.includes('app.ui')}">
+		<a href class="auto"> <span class="pull-right text-muted"> <i class="fa fa-fw fa-angle-right text"></i> <i class="fa fa-fw fa-angle-down text-active"></i> </span> <i class="fa fa-wrench icon"></i> <span translate="aside.nav.components.ui_kits.UI_KITS">UI Kits</span> </a>
+		<ul class="nav nav-sub dk">
+			<li class="nav-sub-header">
+				<a href> <span translate="aside.nav.components.ui_kits.UI_KITS">UI Kits</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.buttons"> <span translate="aside.nav.components.ui_kits.BUTTONS">Buttons</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.icons"> <b class="badge bg-info pull-right">3</b> <span translate="aside.nav.components.ui_kits.ICONS">Icons</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.grid"> <span translate="aside.nav.components.ui_kits.GRID">Grid</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.widgets"> <b class="badge bg-success pull-right">13</b> <span translate="aside.nav.components.ui_kits.WIDGETS">Widgets</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.bootstrap"> <b class="badge bg-primary pull-right">16</b> <span translate="aside.nav.components.ui_kits.BOOTSTRAP">Bootstrap</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.sortable"> <span translate="aside.nav.components.ui_kits.SORTABLE">Sortable</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.scroll"> <span translate="aside.nav.components.ui_kits.Scroll">Scroll</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.portlet"> <span translate="aside.nav.components.ui_kits.PORTLET">Portlet</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.steps"> <span translate="aside.nav.components.ui_kits.STEPS">Steps</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.timeline"> <span translate="aside.nav.components.ui_kits.TIMELINE">Timeline</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.tree"> <span translate="aside.nav.components.ui_kits.Tree">Tree</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.toaster"> <span translate="aside.nav.components.ui_kits.Toaster">Toaster</span> </a>
+			</li>
+			<li>
+				<a href class="auto"> <span class="pull-right text-muted"> <i class="fa fa-fw fa-angle-right text"></i> <i class="fa fa-fw fa-angle-down text-active"></i> </span> <b class="label bg-info pull-right">2</b> <span translate="aside.nav.components.ui_kits.map.MAP">Maps</span> </a>
+				<ul class="nav dker">
+					<li ui-sref-active="active">
+						<a ui-sref="app.ui.jvectormap"> <span translate="aside.nav.components.ui_kits.map.VECTOR_MAP">Vector Map</span> </a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="app.ui.baidumap"> <span translate="aside.nav.components.ui_kits.map.Baidu_MAP">Baidu Map</span> </a>
+					</li>
+
+				</ul>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.media"> <span translate="aside.nav.components.ui_kits.Media">Media</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.ui.pdf"> <span translate="aside.nav.components.ui_kits.PDF">Media</span> </a>
+			</li>
+		</ul>
+	</li>
+	<li v-class="{active:$state.includes('app.table')}">
+		<a href class="auto"> <span class="pull-right text-muted"> <i class="fa fa-fw fa-angle-right text"></i> <i class="fa fa-fw fa-angle-down text-active"></i> </span> <b class="label bg-primary pull-right">2</b> <i class="fa fa-table"></i> <span translate="aside.nav.components.table.TABLE">Table</span> </a>
+		<ul class="nav nav-sub dk">
+			<li class="nav-sub-header">
+				<a href> <span translate="aside.nav.components.table.TABLE">Table</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.table.static"> <span translate="aside.nav.components.table.TABLE_STATIC">Table static</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.table.datatable"> <span translate="aside.nav.components.table.DATATABLE">Datatable</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.table.footable"> <span translate="aside.nav.components.table.FOOTABLE">Footable</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.table.grid"> <span translate="aside.nav.components.table.vGrid">vGrid</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.table.uigrid"> <span translate="aside.nav.components.table.uiGrid">uiGrid</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.table.smart"> <span translate="aside.nav.components.table.Smart_table">Smart table</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.table.editable"> <span translate="aside.nav.components.table.Editable">Editable</span> </a>
+			</li>
+		</ul>
+	</li>
+	<li v-class="{active:$state.includes('app.form')}">
+		<a href class="auto"> <span class="pull-right text-muted"> <i class="fa fa-fw fa-angle-right text"></i> <i class="fa fa-fw fa-angle-down text-active"></i> </span> <i class="glyphicon glyphicon-list-alt"></i> <span translate="aside.nav.components.form.FORM">Form</span> </a>
+		<ul class="nav nav-sub dk">
+			<li class="nav-sub-header">
+				<a href> <span translate="aside.nav.components.form.FORM">Form</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.form.elements"> <span translate="aside.nav.components.form.FORM_ELEMENTS">Form elements</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.form.validation"> <span translate="aside.nav.components.form.FORM_VALIDATION">Form validation</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.form.wizard"> <span translate="aside.nav.components.form.FORM_WIZARD">Form wizard</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.form.fileupload"> <span translate="aside.nav.components.form.File_Upload">File upload</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.form.imagecrop"> <span translate="aside.nav.components.form.Image_Crop">Image crop</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.form.imgupload"> <span
+						translate="aside.nav.components.form.ImgUpload">ImgBase64Upload</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.form.select"> <span translate="aside.nav.components.form.Select">Select</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.form.slider"> <span translate="aside.nav.components.form.Slider">Slider</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.form.editor"> <span translate="aside.nav.components.form.Editor">Editor</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.form.xeditable"> <span translate="aside.nav.components.form.Xeditable">Xeditable</span> </a>
+			</li>
+		</ul>
+	</li>
+	<li ui-sref-active="active">
+		<a ui-sref="app.chart"> <i class="glyphicon glyphicon-dashboard"></i> <span translate="aside.nav.components.CHART">Chart</span> </a>
+	</li>
+	<li ui-sref-active="active">
+		<a ui-sref="app.calendar"> <i class="glyphicon glyphicon-edit"></i> <span translate="aside.nav.CALENDAR">Calendar</span> </a>
+	</li>
+
+	<li class="line dk"></li>
+	<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+		<span translate="aside.nav.customization.Customization">Customization</span>
+	</li>
+	<li ui-sref-active="active">
+		<a ui-sref="app.customize"> <i class="fa fa-coffee text-danger"></i><span  translate="aside.nav.customization.CustomDesign">Custom Design</span> </a>
+	</li>
+
+	<li class="line dk"></li>
+	<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+		<span translate="aside.nav.ExcellentWeb.header">优站精选</span>
+	</li>
+	<li ui-sref-active="active">
+		<a ui-sref="music.home"> <i class="fa fa-music icon"></i> <span translate="aside.nav.apps.Music">Music</span> <span class="label bg-info pull-right">new</span></a>
+	</li>
+	<li ui-sref-active="active">
+		<a ui-sref="app.mail.list"> <b class="badge bg-info pull-right">9</b> <i class="glyphicon glyphicon-envelope icon"></i> <span translate="aside.nav.EMAIL">Email</span> </a>
+	</li>
+	<li v-class="{active:$state.includes('app.page')}">
+		<a href class="auto"> <span class="pull-right text-muted"> <i class="fa fa-fw fa-angle-right text"></i> <i class="fa fa-fw fa-angle-down text-active"></i> </span> <i class="glyphicon glyphicon-file icon"></i> <span translate="aside.nav.components.pages.PAGES">Pages</span> </a>
+		<ul class="nav nav-sub dk">
+			<li class="nav-sub-header">
+				<a href> <span translate="aside.nav.components.pages.PAGES">Pages</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.page.profile"> <span translate="aside.nav.components.pages.PROFILE">Profile</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.page.post"> <span translate="aside.nav.components.pages.POST">Post</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.page.search"> <span translate="aside.nav.components.pages.SEARCH">Search</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.page.invoice"> <span translate="aside.nav.components.pages.INVOICE">Invoice</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.page.price"> <span translate="aside.nav.components.pages.Price">Price</span> </a>
+			</li>
+			<li>
+				<a ui-sref="lockme"> <span translate="aside.nav.components.pages.LOCK_SCREEN">Lock screen</span> </a>
+			</li>
+			<li>
+				<a ui-sref="access.signin"> <span translate="aside.nav.components.pages.SIGNIN">Signin</span> </a>
+			</li>
+			<li>
+				<a ui-sref="access.signup"> <span translate="aside.nav.components.pages.SIGNUP">Signup</span> </a>
+			</li>
+			<li>
+				<a ui-sref="access.forgotpwd"> <span translate="aside.nav.components.pages.FORGOT_PASSWORD">Forgot password</span> </a>
+			</li>
+			<li>
+				<a ui-sref="access.404"> <span translate="aside.nav.components.pages.404">404</span> </a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a href class="auto"> <span class="pull-right text-muted"> <i class="fa fa-fw fa-angle-right text"></i> <i class="fa fa-fw fa-angle-down text-active"></i> </span> <i class="glyphicon glyphicon-th-large icon"></i> <span translate="aside.nav.apps.APPS">Apps</span> </a>
+		<ul class="nav nav-sub dk">
+			<li class="nav-sub-header">
+				<a href> <span translate="aside.nav.apps.APPS">Apps</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.todo" > <span translate="aside.nav.apps.TODO">Todo</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.note"> <span translate="aside.nav.apps.NOTE">Note</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.contact"> <span translate="aside.nav.apps.CONTACTS">Contacts</span> </a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.weather"> <span translate="aside.nav.apps.WEATHER">Weather</span> </a>
+			</li>
+		</ul>
+	</li>
+
+	<li class="line dk hidden-folded"></li>
+</ul>

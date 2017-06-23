@@ -1,0 +1,40 @@
+<div oc-lazy-load="htmls/Comment/CommentApprove/CommentApprove.js">
+	<div  ng-controller="CommentApproveCtrl" ng-init="startup()">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="h4">评论审核</span>
+			</div>
+			<div class="panel-body">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-6">
+							<form class="form-horizontal" name="post-new" novalidate>
+								<div class="form-group">
+									<label class="control-label">评论</label>
+									<textarea name="content" class="form-control" ng-model="comment.comment_content" required="required" style="height: 200px;">
+		                    </textarea>
+								</div>
+								<div class="form-group">
+									<label for="author"  class="control-label">姓名 <span class="required">*</span></label>
+									<input id="author" class="form-control" name="author" ng-model="comment.comment_author" type="text" required="required">
+								</div>
+								<div class="form-group">
+									<label for="email"  class="control-label">电子邮件 <span class="required">*</span></label>
+									<input id="email" class="form-control" name="email" type="email" ng-model="comment.comment_author_email" required="required">
+								</div>
+								<div class="form-group">
+									<label for="url"  class="control-label">站点</label>
+									<input id="url" class="form-control" name="url" type="url" ng-model="comment.comment_author_url" >
+								</div>
+								<div class="btn-div">
+									<button type="submit" class="btn btn-info" ng-click="ApproveResolve(1)">批准</button>
+									<button type="submit" class="btn btn-info" ng-click="ApproveResolve(0)">拒绝</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
