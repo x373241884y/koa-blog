@@ -10,7 +10,6 @@ module.exports = {
 		return new Promise(function (resolve, reject) {
 			sqlhelp.withTransaction(function (connection) {
 				var post = new Post(obj);
-				console.log(JSON.stringify(post));
 				return connection.queryAsync(postSqls.save, post).then(function (okPacket) {
 					var termRelations = obj.termRelations, values = [];
 					if (termRelations.length > 0) {

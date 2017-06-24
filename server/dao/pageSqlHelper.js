@@ -1,7 +1,7 @@
 var sqlhelp = require("../utils/sqlHelper");
 var Promise = require('bluebird');
 var sqlfirewall=require("../utils/sqlFirewall");
-
+var logger = require('../utils/logger');
 function PageModel(offset, limit, list, count) {
 	// 页面参数
 	this.offset = offset;
@@ -37,20 +37,20 @@ function PageModel(offset, limit, list, count) {
 function getPageBean(offset, limit, sql, parameters) {
 	var defered = Promise.defer();
 	if(sqlfirewall("number",[offset,limit])){
-		console.log("**********************分页查询开始************************");
+		logger.info("**********************分页查询开始************************");
 		var pagemodel, queryCountSql, limitSql;
 		limitSql = sql + " limit " + offset + "," + limit;
 		queryCountSql = sql.toLowerCase().replace(/select.*from/, "select count(*) from");
 		Promise.all([sqlhelp.query(queryCountSql, parameters), sqlhelp.query(limitSql, parameters)])
 			.spread(function (countResult, list) {
-				console.log("**********************分页查询结束************************");
+				logger.info("**********************分页查询结束************************");
 				pagemodel = new PageModel(offset, limit, list, countResult[0]["count(*)"]);
 				defered.resolve(pagemodel);
 			}, function (err) {
 				defered.reject(err);
 			});
 	}else{
-		console.log('sqlinject.....???????????');
+		logger.warn('sqlinject.....???????????');
 		defered.reject("sqlInject");
 	}
 	return defered.promise;

@@ -1,14 +1,15 @@
 var mysql = require('mysql');
 var Promise = require('bluebird');
+var logger = require('./logger');
 exports.query = function () {
-	console.info("sql query " + arguments[0]);
+	logger.info("sql query " + arguments[0]);
 	var params = Array.prototype.slice.call(arguments, 0);
 
 	return new Promise(function (resolve, reject) {
 		params.push(function (err) {
 			var args = Array.prototype.slice.call(arguments, 1);
 			if (err) {
-				console.log(err.stack);
+				logger.error(err);
 				reject(err);
 			}
 			resolve.apply(this, args);
@@ -17,14 +18,14 @@ exports.query = function () {
 	});
 };
 exports.queryOne = function () {
-	console.info("sqlOne query " + arguments[0]);
+	logger.info("sqlOne query " + arguments[0]);
 	var params = Array.prototype.slice.call(arguments, 0);
 
 	return new Promise(function (resolve, reject) {
 		params.push(function (err, result) {
 			var uniqueResult;
 			if (err) {
-				console.log(err.stack);
+				logger.error(err);
 				reject(err);
 			}
 			if (result && result.length > 0) {
@@ -46,20 +47,19 @@ function getSqlConnection() {
 exports.getSqlConnection = getSqlConnection;
 
 exports.withTransaction = function (fn) {
-	console.log('withTransaction--------start.........');
+	logger.info('withTransaction--------start.........');
 	return Promise.using(getSqlConnection(), function (connection) {
 		return connection.beginTransactionAsync().then(function () {
 			return Promise
 				.try(fn, connection)
 				.then(function (res) {
-					console.log('withTransaction--------end.........');
+					logger.info('withTransaction--------end.........');
 					return connection.commitAsync().thenReturn(res)
 				}, function (err) {
-					console.log('withTransaction--------rollback.........');
+					logger.info('withTransaction--------rollback.........');
 					return connection.rollbackAsync()
 						.catch(function (e) {/* maybe add the rollback error to err */
-						})
-						.thenThrow(err);
+						}).thenThrow(err);
 				});
 		});
 	});

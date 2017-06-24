@@ -1,31 +1,58 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>404 - error</title>
-<link href="/css/error.css" rel="stylesheet" type="text/css" />
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>404 - Not Found</title>
+    <link rel="stylesheet" href="/css/error.css">
 </head>
-select ID  from wp_posts where year(post_date)=? and month(post_date)=? and post_type='post' and post_status='publish' order by post_date desc
 <body>
-<div class="container error-404">
-    <!--top-->
-    <!--./top-->
-
-    <!--error-->
-    <div class="main">
-        <div class="error">
-            <div class="error-text">
-                <h3>页面挂了</h3>
-                <p>非常抱歉，这个页面已离开地球</p>
-                <a href="javascript:history.go(-1);"  class="btn float-l">原地复活<br /><span>Impossible</span></a>
-                <a href="/"  class="btn btn-highlight float-l">回到首页<br /><span>Go</span></a>
+<div class="wrapper row2">
+    <div id="container" class="clear">
+        <section id="out" class="clear">
+            <div class="banner clearfix">
+                <span class="help cn active">温馨提示</span>
+                <span class="help en">A Kindly Reminder</span>
+                <ul class=" list active1">
+                    <li style="float: right" onclick="switchLocal('cn')">中文</li>
+                    <li style="float: right" onclick="switchLocal('en')">English</li>
+                </ul>
             </div>
-        </div>
+            <div class="content cn active">
+                <div class="hgroup clear">
+                    <h1>404</h1>
+                    <h2>错误 ! <span>请求页面不存在</span></h2>
+                </div>
+                <p>由于某些原因，您在我们的服务器上找不到您请求的页面。</p>
+                <p><a href="javascript:history.go(-1)">&laquo; 返回前页</a> / <a href="/">回到首页 &raquo;</a></p>
+            </div>
+            <div class="content en">
+                <div class="hgroup clear">
+                    <h1>404</h1>
+                    <h2>Error ! <span>Page Not Found</span></h2>
+
+                </div>
+                <p>For Some Reason The Page You Requested Could Not Be Found On Our Server</p>
+                <p><a href="javascript:history.go(-1)">&laquo; Go Back</a> / <a href="/">Go Home &raquo;</a></p>
+            </div>
+
+
+        </section>
     </div>
-    <!--./error-->
 </div>
+<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+	function switchLocal(type) {
+		if(type=='cn'){
+			$("#out .en").removeClass("active");
+			$("#out .cn").addClass("active");
+		}else if(type=='en'){
+			$("#out .cn").removeClass("active");
+			$("#out .en").addClass("active");
+		}
+	}
+</script>
 </body>
 </html>
+

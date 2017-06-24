@@ -4,7 +4,7 @@ var sqlhelp = require('../utils/sqlHelper');
 var termsqls = require('./SQLTemplate').termSql;
 var pagehelp = require('./pageSqlHelper');
 var Promise = require('bluebird');
-
+var logger = require('../utils/logger');
 module.exports = {
 	create: function (term, options) {
 		var sql = "insert into wp_terms set ?";
@@ -15,7 +15,7 @@ module.exports = {
 		return new Promise(function (resolve, reject) {
 			function reject2(err, connection) {
 				return connection.rollback(function () {
-					console.log('rollback.........');
+					logger.info('rollback.........');
 					reject(err);
 					connection && connection.release();
 				});
@@ -65,7 +65,7 @@ module.exports = {
 		return new Promise(function (resolve, reject) {
 			function reject2(err, connection) {
 				return connection.rollback(function () {
-					console.log('rollback.........');
+					logger.info('rollback.........');
 					reject(err);
 					connection && connection.release();
 				});

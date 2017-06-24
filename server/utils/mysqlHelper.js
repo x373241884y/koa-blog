@@ -7,6 +7,7 @@ Promise.promisifyAll(require("mysql/lib/Connection").prototype);
 Promise.promisifyAll(require("mysql/lib/Pool").prototype);
 
 var config = require('config-lite');
+var logger = require('./logger');
 
 var pool = mysql.createPool(config.url);
 
@@ -15,7 +16,7 @@ module.exports = {
 		var self = this;
 		return new Promise(function (resolve, reject) {
 			pool.queryAsync('SELECT 1 + 1 AS solution').then(function (results) {
-				console.log('The solution is: ', results[0].solution);
+				logger.info('The solution is: ', results[0].solution);
 				process.dbpool = pool;
 				resolve(results[0].solution);
 			}).caught(function (err) {

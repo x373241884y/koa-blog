@@ -6,13 +6,14 @@ module.exports = {
 	// url: 'mongodb://localhost:27017/blogxu',
 	type:'mysql',
 	url: 'mysql://xxhblog:xxhblog@127.0.0.1/myblog?e&charset=utf8',
+	loggerLevel: 'info',
 	session: {
 		name: 'SID',
 		secret: 'SID',
 		cookie: {
 			httpOnly: true,
 			secure: false,
-			maxAge: 365 * 24 * 60 * 60 * 1000,
+			maxAge: 30 * 24 * 60 * 60 * 1000,
 		}
 	}
 };

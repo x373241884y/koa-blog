@@ -6,9 +6,9 @@
 
 module.exports = intercept;
 
-
+var logger = require('../utils/logger');
 function intercept(path, options) {
-	console.log('use filter:permission');
+	logger.info('use filter:permission');
 	
 	var opts = options || {};
 	
